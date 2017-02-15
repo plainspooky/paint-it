@@ -1,2 +1,2 @@
 #!/bin/sh
-python ./paint-it.py && exit 0
+/usr/bin/env python2 paint-it.py && exit 0
