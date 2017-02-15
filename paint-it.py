@@ -74,7 +74,7 @@ class Game:
                 self.arena[y].append( random.randint(1,6) )
 
     def check_game(self):
-        if self.moves >= self.max_moves:
+        if self.moves > self.max_moves:
             self.status='lose'
             self.screen.addstr( self.moves_position[0], self.offset_x, "YOU LOSE!", curses.color_pair(4))
         else:
