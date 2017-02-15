@@ -1,0 +1,2 @@
+#!/bin/sh
+python ./paint-it.py && exit 0
