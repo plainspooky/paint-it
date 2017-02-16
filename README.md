@@ -1,4 +1,3 @@
-# Paint It
-This is game is a console clone from **flood-it**, it requires Python version 2.x and used _curses_ and _random_ libraries.
-
 ![](paint-it.png)
+
+Paint is a console version of **flood-it** game written in Python and working with both 2.x and 3.x versions.
