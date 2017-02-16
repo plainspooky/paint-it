@@ -42,7 +42,7 @@ class Game:
 
     def __init__(self, arena_size):
         self.arena_size = arena_size
-        self.max_moves = 25*(2*arena_size*COLORS)/(28*6)
+        self.max_moves = int(25*(2*arena_size*COLORS)/(28*6))
         self.screen = curses.initscr()
         curses.noecho()
         curses.cbreak()
@@ -66,8 +66,8 @@ class Game:
         curses.init_pair(6, curses.COLOR_WHITE, curses.COLOR_YELLOW)
         curses.init_pair(7, curses.COLOR_WHITE, curses.COLOR_WHITE)
 
-        self.offset_x = (self.window_size[1]-2*self.arena_size)/2
-        self.offset_y = (self.window_size[0]-self.arena_size)/2
+        self.offset_x = int((self.window_size[1]-2*self.arena_size)/2)
+        self.offset_y = int((self.window_size[0]-self.arena_size)/2)
         self.moves_position=[ self.offset_y+self.arena_size+1, self.offset_x+self.arena_size-5 ]
 
         self.arena_initialize()
@@ -98,9 +98,9 @@ class Game:
 
     def display_help(self):
         for y in range(len(self.helper)):
-            x = (self.arena_size*2-WINDOW)/2
+            x = int((self.arena_size*2-WINDOW)/2)
             self.screen.addstr( self.offset_y + 1 + y, self.offset_x + x, " "*WINDOW, curses.color_pair(0))
-            x = (self.arena_size*2-len(self.helper[y]))/2
+            x = int((self.arena_size*2-len(self.helper[y]))/2)
             self.screen.addstr( self.offset_y + 1 + y, self.offset_x + x, self.helper[y], curses.color_pair(0))
         while self.screen.getch()!=27:
             pass
@@ -188,6 +188,7 @@ def main():
     curses.nocbreak()
     curses.echo()
     curses.endwin()
+
     print('Thanks for playing!')
     exit()
 
