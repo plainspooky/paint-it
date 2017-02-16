@@ -17,6 +17,7 @@ __author__ = 'Giovanni Nunes'
 __version__ = '1'
 
 COLORS = 6
+WINDOW = 24
 
 class Game:
     arena = []
@@ -30,7 +31,14 @@ class Game:
     title="PAINT-IT"
     window_size = [24, 80]
 
-    helper=[ "Use: (B)lue, (C)yan,", " (G)reen, (M)agenta,", " (R)ed or (Y)ellow. ", " <CTRL>+<X> to exit!", "  Press <ESC> key!  " ]
+    helper=[ "*** HELP ***",
+             "----------------------",
+             "Use: (B)lue, (C)yan,",
+             "(G)reen, (M)agenta,",
+             "(R)ed or (Y)ellow.",
+             "<CTRL>+<X> to exit",
+             "----------------------",
+             "<ESC> to return" ]
 
     def __init__(self, arena_size):
         self.arena_size = arena_size
@@ -90,7 +98,10 @@ class Game:
 
     def display_help(self):
         for y in range(len(self.helper)):
-            self.screen.addstr( self.offset_y+1+y, self.offset_x+self.arena_size-11, " "+self.helper[y]+" ", curses.color_pair(0))
+            x = (self.arena_size*2-WINDOW)/2
+            self.screen.addstr( self.offset_y + 1 + y, self.offset_x + x, " "*WINDOW, curses.color_pair(0))
+            x = (self.arena_size*2-len(self.helper[y]))/2
+            self.screen.addstr( self.offset_y + 1 + y, self.offset_x + x, self.helper[y], curses.color_pair(0))
         while self.screen.getch()!=27:
             pass
 
@@ -172,8 +183,6 @@ def main():
             break
         elif new_color==-1:
             game.display_help()
-
-    # if game.status='lose':
 
     game.screen.keypad(False)
     curses.nocbreak()
